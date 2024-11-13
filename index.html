@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Text Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fancy Text Generator</h1>
+    <p>Enter your text below to generate fancy versions:</p>
+    <input type="text" id="inputText" placeholder="Enter text here">
+    <button onclick="generateFancyText()">Generate Fancy Text</button>
+    
+    <div class="output">
+        <p><strong>Bold:</strong> <span id="boldText"></span></p>
+        <p><strong>Italic:</strong> <span id="italicText"></span></p>
+        <p><strong>Script Style:</strong> <span id="scriptText"></span></p>
+    </div>
+
+    <script>
+        const boldChars = [...'𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙abcdefghijklmnopqrstuvwxyz0123456789'];
+        const italicChars = [...'𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻0123456789'];
+        const scriptChars = [...'𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏0123456789'];
+
+        const normalChars = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'];
+
+        function convertText(text, fancyChars) {
+            return text.split('').map(char => {
+                let index = normalChars.indexOf(char);
+                return index > -1 ? fancyChars[index] : char;
+            }).join('');
+        }
+
+        function generateFancyText() {
+            const inputText = document.getElementById('inputText').value;
+
+            document.getElementById('boldText').textContent = convertText(inputText, boldChars);
+            document.getElementById('italicText').textContent = convertText(inputText, italicChars);
+            document.getElementById('scriptText').textContent = convertText(inputText, scriptChars);
+        }
+    </script>
+</body>
+</html>
